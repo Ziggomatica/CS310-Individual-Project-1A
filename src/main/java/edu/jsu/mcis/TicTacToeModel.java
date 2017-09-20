@@ -89,7 +89,7 @@ public class TicTacToeModel{
         /* Place the current player's mark in the square at the specified
            location, but only if the location is valid and if the square is
            empty! */
-
+        
         return ((!isSquareMarked(row,col)) && (isValidSquare(row,col)));
         
     }

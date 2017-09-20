@@ -16,7 +16,16 @@ public class TicTacToeView {
         
         /* Print the board to the console (see examples) */
         
-        /* INSERT YOUR CODE HERE */
+        System.out.println();
+        System.out.println("  012");
+        System.out.println();
+        System.out.println("0 " + model.getMark(0,0)
+                + model.getMark(0,1) + model.getMark(0,2));
+        System.out.println("1 " + model.getMark(1,0)
+                + model.getMark(1,1) + model.getMark(1,2));
+        System.out.println("2 " + model.getMark(2,0)
+                + model.getMark(2,1) + model.getMark(2,2));
+        System.out.println();
 
     }
 
@@ -24,7 +33,14 @@ public class TicTacToeView {
 
         /* Display a prompt for the player's next move (see examples) */
 
-        /* INSERT YOUR CODE HERE */
+        if (model.isXTurn()) {
+            System.out.println("Player 1 (X) Move: ");
+        }
+        else if (!model.isXTurn()) {
+            System.out.println("Player 2 (O) Move: ");
+        }
+        
+        System.out.print("Enter the row and column numbers, separated by a space: ");
 
     }
 
@@ -32,7 +48,7 @@ public class TicTacToeView {
 
         /* Display an error if input is invalid (see examples) */
 
-        /* INSERT YOUR CODE HERE */
+        System.out.println("Invalid input. Either that square is taken or you entered a wrong number.");
 
     }
 

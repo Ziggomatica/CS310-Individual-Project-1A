@@ -19,6 +19,7 @@ public class TicTacToeView {
         System.out.println();
         System.out.println("  012");
         System.out.println();
+		System.out.println();
         System.out.println("0 " + model.getMark(0,0)
                 + model.getMark(0,1) + model.getMark(0,2));
         System.out.println("1 " + model.getMark(1,0)
@@ -26,6 +27,7 @@ public class TicTacToeView {
         System.out.println("2 " + model.getMark(2,0)
                 + model.getMark(2,1) + model.getMark(2,2));
         System.out.println();
+		System.out.println();
 
     }
 

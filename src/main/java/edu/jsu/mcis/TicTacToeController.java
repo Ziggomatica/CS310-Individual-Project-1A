@@ -1,6 +1,7 @@
 package edu.jsu.mcis;
 
 import java.util.Scanner;
+import java.lang.Exception;
 
 public class TicTacToeController {
 
@@ -34,23 +35,33 @@ public class TicTacToeController {
            center square of a 3 x 3 grid).  Make mark if input is valid, or show
            error message using view's showInputError() if input is invalid. */
         
-        int r = keyboard.nextInt();
-        int c = keyboard.nextInt();
-        
-        if (model.makeMark(r,c)) {                   //checks if valid spot
-            if (model.isXTurn()) {                   //if so, marks with proper
-                model.grid[r][c] = model.Mark.X;     //mark and switches to next
-                model.xTurn = false;                 //player
+        boolean validInput = false;
+        while (!validInput) {
+            try {
+                int r = keyboard.nextInt();
+                int c = keyboard.nextInt();
+                if (model.makeMark(r,c)) {            //checks if valid spot
+                    if (model.isXTurn()) {            //if so, marks with proper
+                        model.changeMark(r,c);        //mark and switches to
+                        model.xTurn = false;          //next player
+                        validInput = true;
+                    }
+                    else {
+                        model.changeMark(r,c);
+                        model.xTurn = true;
+                        validInput = true;
+                    }
+                }
+                else {
+                    view.showInputError();
+                    view.showNextMovePrompt();
+                }
             }
-            else {
-                model.grid[r][c] = model.Mark.O;
-                model.xTurn = true;
+            catch (Exception e){
+                keyboard.next();
+                view.showInputError();
+                view.showNextMovePrompt();
             }
         }
-        else  {view.showInputError();}
-        
-
-        
-    }
-
+    }      
 }

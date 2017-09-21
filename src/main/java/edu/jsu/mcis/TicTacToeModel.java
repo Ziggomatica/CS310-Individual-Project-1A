@@ -48,8 +48,8 @@ public class TicTacToeModel{
         
     };
     
-    private Mark[][] grid; /* Game grid */
-    private boolean xTurn; /* True if X is current player */
+    Mark[][] grid; /* Game grid */
+    boolean xTurn; /* True if X is current player */
     private int width;     /* Size of game grid */
     
     /* DEFAULT CONSTRUCTOR */
@@ -112,8 +112,19 @@ public class TicTacToeModel{
         
         /* Return mark from the square at the specified location */
 
-        return grid[row][col];
-            
+        return grid[row][col];      
+    }
+    
+    public Mark changeMark(int row, int col) {
+        
+        /* Return mark from the square at the specified location */
+
+        if (isXTurn()) {
+            return grid[row][col] = Mark.X;
+        }
+        else {
+            return grid[row][col] = Mark.O;
+        }        
     }
 	
     public Result getResult() {

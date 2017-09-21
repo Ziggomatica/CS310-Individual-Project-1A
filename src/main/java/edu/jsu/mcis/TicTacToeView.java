@@ -48,7 +48,8 @@ public class TicTacToeView {
 
         /* Display an error if input is invalid (see examples) */
 
-        System.out.println("Invalid input. Either that square is taken or you entered a wrong number.");
+        System.out.println("Invalid input. Either that square is taken or "
+                + "you didn't enter the correct numbers.");
 
     }
 

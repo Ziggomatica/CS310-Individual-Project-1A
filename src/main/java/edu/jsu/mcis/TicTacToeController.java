@@ -38,9 +38,7 @@ public class TicTacToeController {
         boolean validInput = false;
         while (!validInput) {
             try {
-                int r = keyboard.nextInt();
-                int c = keyboard.nextInt();
-                if (!model.makeMark(r,c)) {                     
+                if (!model.makeMark(keyboard.nextInt(),keyboard.nextInt())) {
                     view.showInputError();
                     view.showNextMovePrompt();
                     }

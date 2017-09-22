@@ -31,6 +31,7 @@ public class TicTacToeView {
             System.out.println();
         }
         System.out.println();
+		System.out.println();
 
     }
 

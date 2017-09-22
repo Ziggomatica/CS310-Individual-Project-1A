@@ -150,14 +150,15 @@ public class TicTacToeModel{
            winner */
        
         //Rows
+        int j;
         checkRow: for(int i = 0; i < width; i++) {
-            for (int j = 0; j < width; j++) {
+            for (j = 0; j < width; j++) {
                 if (grid[i][j] != mark) {
                     break checkRow;
-                } 
-            }
-            if (i == width - 1) {
-                return true;
+                }
+                if (j == width - 1) {
+                    return true;
+                }
             }
         }
 
@@ -168,9 +169,9 @@ public class TicTacToeModel{
                 if (grid[l][k] != mark) {
                     break checkCol;
                 }
-            }
-            if (l == width - 1) {
-                return true;
+                if (l == width - 1) {
+                    return true;
+                }
             }
         }
 

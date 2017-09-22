@@ -162,13 +162,14 @@ public class TicTacToeModel{
         }
 
         //Columns
+        int l;
         checkCol: for(int k = 0; k < width; k++) {
-            for (int l = 0; l < width; l++) {
+            for (l = 0; l < width; l++) {
                 if (grid[l][k] != mark) {
                     break checkCol;
                 }
             }
-            if (k == width - 1) {
+            if (l == width - 1) {
                 return true;
             }
         }

@@ -1,4 +1,5 @@
 package edu.jsu.mcis;
+import java.lang.Exception;
 
 public class TicTacToeModel{
     
@@ -89,19 +90,23 @@ public class TicTacToeModel{
         /* Place the current player's mark in the square at the specified
            location, but only if the location is valid and if the square is
            empty! */
-        
-        if ((!isSquareMarked(row,col)) && (isValidSquare(row,col))) {
-            if (isXTurn()) {
-                grid[row][col] = Mark.X;
-                xTurn = false;
-                return true;
-            }
-            else {
-                grid[row][col] = Mark.O;
-                xTurn = true;
-                return true;
+        try {
+            if ((!isSquareMarked(row,col)) && (isValidSquare(row,col))) {
+                if (isXTurn()) {
+                    grid[row][col] = Mark.X;
+                    xTurn = false;
+                    return true;
+                }
+                else {
+                    grid[row][col] = Mark.O;
+                    xTurn = true;
+                    return true;
+                }
             }
         }
+            catch (Exception e) {
+                return false;
+            }
         return false;
     }
 	

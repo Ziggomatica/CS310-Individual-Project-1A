@@ -38,23 +38,12 @@ public class TicTacToeController {
         boolean validInput = false;
         while (!validInput) {
             try {
-                int r = keyboard.nextInt();
-                int c = keyboard.nextInt();
-                if (model.makeMark(r,c)) {            //checks if valid spot
-                    if (model.isXTurn()) {            //if so, marks with proper
-                        model.changeMark(r,c);        //mark and switches to
-                        model.xTurn = false;          //next player
-                        validInput = true;
-                    }
-                    else {
-                        model.changeMark(r,c);
-                        model.xTurn = true;
-                        validInput = true;
-                    }
-                }
-                else {
+                if (!model.makeMark(keyboard.nextInt(),keyboard.nextInt())) {
                     view.showInputError();
                     view.showNextMovePrompt();
+                    }
+                else {
+                    validInput = true;
                 }
             }
             catch (Exception e){

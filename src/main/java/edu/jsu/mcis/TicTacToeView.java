@@ -16,19 +16,19 @@ public class TicTacToeView {
         
         /* Print the board to the console (see examples) */
         
-        System.out.println();
-        System.out.println("  012");
-        System.out.println();
-		System.out.println();
-        System.out.println("0 " + model.getMark(0,0)
-                + model.getMark(0,1) + model.getMark(0,2));
-        System.out.println("1 " + model.getMark(1,0)
-                + model.getMark(1,1) + model.getMark(1,2));
-        System.out.println("2 " + model.getMark(2,0)
-                + model.getMark(2,1) + model.getMark(2,2));
-        System.out.println();
-		System.out.println();
-
+        System.out.print("\n\n  ");
+        for (int i = 0; i < model.getWidth(); i++) {
+            System.out.print(i);
+        }
+        System.out.print("\n\n");
+        for (int j = 0; j < model.getWidth(); j++) {
+            System.out.print(j + " ");
+            for (int k = 0; k < model.getWidth(); k++) {
+                System.out.print(model.getMark(j, k));
+            }
+            System.out.print("\n");
+        }
+        System.out.print("\n\n");
     }
 
     public void showNextMovePrompt() {
@@ -50,8 +50,8 @@ public class TicTacToeView {
 
         /* Display an error if input is invalid (see examples) */
 
-        System.out.println("Invalid input. Either that square is taken or "
-                + "you didn't enter the correct numbers.");
+        System.out.println("\nInvalid input. Either that square is taken or "
+                + "you didn't enter the correct numbers.\n");
 
     }
 

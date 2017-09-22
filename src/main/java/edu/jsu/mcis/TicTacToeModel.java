@@ -1,4 +1,5 @@
 package edu.jsu.mcis;
+import java.lang.Exception;
 
 public class TicTacToeModel{
     
@@ -48,8 +49,8 @@ public class TicTacToeModel{
         
     };
     
-    Mark[][] grid; /* Game grid */
-    boolean xTurn; /* True if X is current player */
+    private Mark[][] grid; /* Game grid */
+    private boolean xTurn; /* True if X is current player */
     private int width;     /* Size of game grid */
     
     /* DEFAULT CONSTRUCTOR */
@@ -89,9 +90,24 @@ public class TicTacToeModel{
         /* Place the current player's mark in the square at the specified
            location, but only if the location is valid and if the square is
            empty! */
-        
-        return ((!isSquareMarked(row,col)) && (isValidSquare(row,col)));
-        
+        try {
+            if ((!isSquareMarked(row,col)) && (isValidSquare(row,col))) {
+                if (isXTurn()) {
+                    grid[row][col] = Mark.X;
+                    xTurn = false;
+                    return true;
+                }
+                else {
+                    grid[row][col] = Mark.O;
+                    xTurn = true;
+                    return true;
+                }
+            }
+        }
+            catch (Exception e) {
+                return false;
+            }
+        return false;
     }
 	
     private boolean isValidSquare(int row, int col) {
@@ -115,18 +131,6 @@ public class TicTacToeModel{
         return grid[row][col];      
     }
     
-    public Mark changeMark(int row, int col) {
-        
-        /* Return mark from the square at the specified location */
-
-        if (isXTurn()) {
-            return grid[row][col] = Mark.X;
-        }
-        else {
-            return grid[row][col] = Mark.O;
-        }        
-    }
-	
     public Result getResult() {
         
         /* Use isMarkWin() to see if X or O is the winner, if the game is a
@@ -149,57 +153,49 @@ public class TicTacToeModel{
         
         /* Check the squares of the board to see if the specified mark is the
            winner */
-        
-        //Columns
-        if (getMark(0,0) == mark) {
-            if ((getMark(0,0).equals(getMark(1,0)))
-                && (getMark(1,0).equals(getMark(2,0)))) {
-                return true;
-            }
-        }
-        if (getMark(0,1) == mark) {
-            if ((getMark(0,1).equals(getMark(1,1)))
-                && (getMark(1,1).equals(getMark(2,1)))) {
-                return true;
-            }
-        }
-        if (getMark(0,2) == mark) {
-            if ((getMark(0,2).equals(getMark(1,2)))
-                && (getMark(1,2).equals(getMark(2,2)))) {
-                return true;
-            }
-        }
-        
+       
         //Rows
-        if (getMark(0,0) == mark) {
-            if ((getMark(0,0).equals(getMark(0,1))) 
-                && (getMark(0,1).equals(getMark(0,2)))) {
+        int j;
+        checkRow: for(int i = 0; i < width; i++) {
+            for (j = 0; j < width; j++) {
+                if (grid[i][j] != mark) {
+                    break checkRow;
+                }
+                if (j == width - 1) {
+                    return true;
+                }
+            }
+        }
+
+        //Columns
+        int l;
+        checkCol: for(int k = 0; k < width; k++) {
+            for (l = 0; l < width; l++) {
+                if (grid[l][k] != mark) {
+                    break checkCol;
+                }
+                if (l == width - 1) {
+                    return true;
+                }
+            }
+        }
+
+        //Diagonal
+        checkDiag: for (int m = 0; m < width; m++) {
+            if (grid[m][m] != mark) {
+                break checkDiag;
+            }
+            if (m == width - 1) {
                 return true;
             }
         }
-        if (getMark(1,0) == mark) {
-            if ((getMark(1,0).equals(getMark(1,1))) 
-                && (getMark(1,1).equals(getMark(1,2)))) {
-                return true;
+
+        //Anti-Diagonal
+        checkAnti: for (int n = 0; n < width; n++) {
+            if (grid[n][(width - 1) - n] != mark) {
+                break checkAnti;
             }
-        }
-        if (getMark(2,0) == mark) {
-            if ((getMark(2,0).equals(getMark(2,1))) 
-                && (getMark(2,1).equals(getMark(2,2)))) {
-                return true;
-            }
-        }
-        
-        //Diagonals
-        if (getMark(0,0) == mark) {
-            if ((getMark(0,0).equals(getMark(1,1))) 
-                && (getMark(1,1).equals(getMark(2,2)))) {
-                return true;
-            }
-        }
-        if (getMark(0,2) == mark) {
-            if ((getMark(0,2).equals(getMark(1,1))) 
-                && (getMark(1,1).equals(getMark(2,0)))) {
+            if (n == width - 1) {
                 return true;
             }
         }

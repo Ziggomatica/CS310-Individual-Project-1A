@@ -40,12 +40,12 @@ public class TicTacToeController {
             try {
                 int r = keyboard.nextInt();
                 int c = keyboard.nextInt();
-                if (model.makeMark(r,c)) {                     
-                    validInput = true;
-                    }
-                else {
+                if (!model.makeMark(r,c)) {                     
                     view.showInputError();
                     view.showNextMovePrompt();
+                    }
+                else {
+                    validInput = true;
                 }
             }
             catch (Exception e){
